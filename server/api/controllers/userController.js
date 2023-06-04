@@ -1,15 +1,11 @@
-export const getUsers = (req, res) => {
-   res.json([
-    {
-      "name": "David",
-      "age" : 30
-    },
+import UserServices from '../services/userServices.js';
 
-    {
-      "name": "David",
-      "age" : 30
-    }
-   ]);
+const service = new UserServices();
+
+/* Obtener todo los productos */
+
+export const getUsers = async (req, res) => {
+  const users = await service.find();
+  res.json(users);
 }
-
 

@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker';
 import boom from '@hapi/boom'
+import sequelize from '../libs/sequelize.js';
 
-class productServices {
+class ProductServices {
   constructor(){
     this._products = [];
     this.generate();
@@ -24,18 +25,16 @@ class productServices {
     const newProduct = {
       id: faker.datatype.uuid(),
       ...data
-    }
+    };
     this._products.push(newProduct);
     return newProduct;
   };
 
   async find(){
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this._products)
-      }, 3000);
-    });
-    /* return this._products; */
+    const query = 'SELECT * FROM tasks';
+    const [data] = await sequelize.query(query);
+    return data;
+  
   };
 
   async findOne(id) {
@@ -75,5 +74,5 @@ class productServices {
 };
 
 
-export default productServices;
+export default ProductServices;
 

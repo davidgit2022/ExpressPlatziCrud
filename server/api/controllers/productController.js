@@ -1,7 +1,7 @@
 import productServices from '../services/productServices.js';
 
 
-const service = new productServices()
+const service = new productServices();
 /* Obtener todo los productos */
 export const getProducts = async (req, res) => {
   const products = await service.find();
@@ -39,7 +39,7 @@ export const updateProduct = async (req, res, next) => {
   }
 };
 
-/* Actualizar un producto */
+/* Eliminar un producto */
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   const productDelete = await service.delete(id);
