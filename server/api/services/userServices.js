@@ -1,24 +1,20 @@
-import pool from '../libs/postgres.pool.js';
+import sequelize from '../libs/sequelize.js';
 
 class UserServices {
-  constructor(){
-    this.pool = pool;
-    this.pool.on('error', (err) => console.log(err));
-  };
+  constructor(){};
 
   async create(data){
     return data;
   };
 
   async find(){
-    const query = 'SELECT * FROM tasks';
-    const rta = await this.pool.query(query);
-    return rta.rows;
+    const rta = await sequelize.models.User.findAll();
+    return rta; 
   };
 
   async findOne(id){
     return {id};
-  }
+  };
 };
 
 export default UserServices;
