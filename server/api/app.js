@@ -1,5 +1,5 @@
 import express from "express";
-import { boomErrorHandler, errorHandler, logErrors} from "./middlewares/error.handler.js";
+import { boomErrorHandler, errorHandler, logErrors, ormErrorHandler} from "./middlewares/error.handler.js";
 import cors from "cors";
 
 import apiRouter from './server/index.js';
@@ -32,6 +32,7 @@ app.get('/api', (req, res) => {
 apiRouter(app);
 
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

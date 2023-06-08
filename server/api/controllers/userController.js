@@ -45,7 +45,7 @@ export const updateUser = async (req, res, next) => {
 };
 
 /* Eliminar un producto */
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     const userDelete = await service.delete(id);

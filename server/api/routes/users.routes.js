@@ -14,6 +14,6 @@ router.post('/', validatorHandler(createUserSchema, 'body'), userController.crea
 router.patch('/:id', validatorHandler(getUserSchema, 'params'),
     validatorHandler(updateUserSchema, 'body'), userController.updateUser);
 
-router.delete('/:id', /* validatorHandler(deleteUserSchema, 'params'), */ userController.deleteUser);
+router.delete('/:id', validatorHandler(deleteUserSchema, 'params'), userController.deleteUser);
 
 export default router;
