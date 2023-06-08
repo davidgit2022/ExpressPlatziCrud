@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as productController from '../controllers/productController.js';
 import validatorHandler from '../middlewares/validator.handler.js';
-import { getProductSchema,createProductSchema, updateProductSchema, deleteProductSchema } from "../schemas/product.schema.js";
+import { getProductSchema, createProductSchema, updateProductSchema, deleteProductSchema } from "../schemas/product.schema.js";
 
 
 const router = Router();

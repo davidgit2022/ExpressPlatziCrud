@@ -1,7 +1,7 @@
-import productServices from '../services/productServices.js';
+import ProductServices from '../services/ProductServices.js';
 
 
-const service = new productServices();
+const service = new ProductServices();
 /* Obtener todo los productos */
 export const getProducts = async (req, res) => {
   const products = await service.find();
@@ -9,7 +9,7 @@ export const getProducts = async (req, res) => {
 };
 
 /* Obtener un solo producto */
-export const getOneProduct = async (req, res,) => {
+export const getOneProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     const product = await service.findOne(id);
@@ -41,9 +41,14 @@ export const updateProduct = async (req, res, next) => {
 
 /* Eliminar un producto */
 export const deleteProduct = async (req, res) => {
-  const { id } = req.params;
-  const productDelete = await service.delete(id);
+  try {
+    const { id } = req.params;
+    const productDelete = await service.delete(id);
 
-  res.json(productDelete);
+    res.json(productDelete);
+  } catch (error) {
+    next(error);
+  }
+  
 }
 

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import boom from '@hapi/boom'
+import boom from '@hapi/boom';
 import sequelize from '../libs/sequelize.js';
 
 class ProductServices {
@@ -22,11 +22,14 @@ class ProductServices {
   };
 
   async create(data) {
-    const newProduct = {
+   /*  const newProduct = {
       id: faker.datatype.uuid(),
       ...data
     };
     this._products.push(newProduct);
+    return newProduct; */
+
+    const newProduct = await sequelize.models.Product.create(data);
     return newProduct;
   };
 

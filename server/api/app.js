@@ -1,5 +1,5 @@
 import express from "express";
-import {logErrors,errorHandler,boomErrorHandler} from "./middlewares/error.handler.js";
+import { boomErrorHandler, errorHandler, logErrors} from "./middlewares/error.handler.js";
 import cors from "cors";
 
 import apiRouter from './server/index.js';
@@ -31,9 +31,9 @@ app.get('/api', (req, res) => {
 /* Routes */
 apiRouter(app);
 
-app.use(errorHandler);
 app.use(logErrors);
 app.use(boomErrorHandler);
+app.use(errorHandler);
 
 
 export default app;

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const id = Joi.string().uuid();
+const id = Joi.number().integer();
 const name = Joi.string().min(3).max(15).messages({
   'string.base': "El campo 'nombre' debe ser un string",
   'string.empty': "El campo 'nombre' no puede ser un campo vacío",
@@ -16,22 +16,24 @@ const image = Joi.string().uri().messages({
   'string.base': "El campo 'image' debe ser un string",
 });
 
-export const createProductSchema = Joi.object({
+const createProductSchema = Joi.object({
   name:name.required(),
   price:price.required(),
   image:image.required()
 });
 
-export const updateProductSchema = Joi.object({
+const updateProductSchema = Joi.object({
   name: name,
   price: price,
   image: image
 });
 
-export const deleteProductSchema = Joi.object({
+const deleteProductSchema = Joi.object({
   id:id.required()
 })
 
-export const getProductSchema = Joi.object({
+const getProductSchema = Joi.object({
   id: id.required()
 });
+
+export { createProductSchema, updateProductSchema, deleteProductSchema, getProductSchema};
